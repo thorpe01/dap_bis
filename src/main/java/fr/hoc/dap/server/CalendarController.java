@@ -28,14 +28,14 @@ public class CalendarController {
     @Autowired
     private CalendarService event;
 
+    // Capable de recevoir une requête d'un navigateur. Si le navigateur est sur
+    // event/next
+    // alors il exécute la méthode index
     /**
      * @RequestMapping .
      * @return .
      * @throws Exception .
      */
-    // Capable de recevoir une requête d'un navigateur. Si le navigateur est sur
-    // event/next
-    // alors il exécute la méthode index
     @RequestMapping("/event/next")
     public String index(@RequestParam("userkey") String userKey) throws Exception {
         LOG.info(myConfig.getApplicationName());

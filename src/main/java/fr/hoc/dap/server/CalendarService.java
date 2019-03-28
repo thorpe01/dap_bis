@@ -32,13 +32,6 @@ public final class CalendarService extends GoogleService {
     private static final Logger LOG = LogManager.getLogger("fr.hoc.dap.server.Launcher");
 
     /**
-     * La présence d'un constructeur privé supprime le constructeur public par
-     * défaut.
-     */
-    // private CalendarService() {
-    // }
-
-    /**
      *
      * @throws IOException              = google.
      * @throws GeneralSecurityException = google.
@@ -76,8 +69,7 @@ public final class CalendarService extends GoogleService {
                 if (start == null) {
                     start = event.getStart().getDate();
                 }
-                rdv = rdv + " " + event.getSummary() + "(" + start + "), ";
-                System.out.printf("%s (%s)\n", event.getSummary(), start);
+                rdv = rdv + " BOB " + event.getSummary() + "(" + start + "), ";
             }
         }
 

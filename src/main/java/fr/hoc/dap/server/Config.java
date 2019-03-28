@@ -12,9 +12,9 @@ public class Config {
      * Dossier dans lequel les autorisations accordées par l'utilisateur seront
      * sauvegardées.
      */
-    private static final String TOKENS_DIRECTORY_PATH = "tokens";
+    private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user home") + "tokens";
     /** dossier credential. path to the json file. */
-    private static final String CREDENTIALS_FILE_PATH = System.getProperty("user home") + "/dap/credential_web_Json";
+    private static final String CREDENTIALS_FILE_PATH = System.getProperty("user home") + "/dap/credential_web.json";
 
     /** Initialize variable viApplicationName. */
     private String applicationName;
