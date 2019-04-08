@@ -41,6 +41,8 @@ public class GmailController {
      */
     @RequestMapping("/email/nbunread")
     public Integer index(@RequestParam("userkey") String userKey) throws Exception {
+        LOG.info("Récupération ud nom d'email");
+        return mesmails.unreadMail(userKey, "me", "is:unread in:inbox");
 
     }
 

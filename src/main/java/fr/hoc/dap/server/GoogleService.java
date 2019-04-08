@@ -29,7 +29,9 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.gmail.GmailScopes;
 
 /**
+ *
  * Classe qui regroupe les autorisations pour accès à Google.
+ *
  */
 @Service
 public class GoogleService {
@@ -71,13 +73,20 @@ public class GoogleService {
      * @throws GeneralSecurityException
      */
     protected Credential getCredentials(String userId) throws IOException, GeneralSecurityException {
+
         LOG.info("Recherche du credential :" + userId);
+
         AuthorizationCodeFlow flow = getFlow();
 
+        //LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(PORT).build();
+        //return new AuthorizationCodeInstalledApp(flow, receiver).authorize("bob25");
+
         return flow.loadCredential(userId);
+
     }
 
     public GoogleAuthorizationCodeFlow getFlow() throws GeneralSecurityException, IOException {
+
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 
         // Load client secrets.
