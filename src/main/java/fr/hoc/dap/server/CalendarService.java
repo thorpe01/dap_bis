@@ -22,9 +22,8 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
 /**
- *
+ * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
  * @author house
- *
  */
 @Service
 public final class CalendarService extends GoogleService {
@@ -39,14 +38,17 @@ public final class CalendarService extends GoogleService {
     // }
 
     /**
-     *
+     * //TODO brs by Djer |JavaDoc| Il manque la description (de la methode), première ligne de la JavaDoc
      * @throws IOException              = google.
      * @throws GeneralSecurityException = google.
      * @return .
      */
+  //TODO brs by Djer |POO| Les noms de méthode ont un général un verbe "retreiveNextEvents" serait mieux
     public String nextEvents(String userKey) throws IOException, GeneralSecurityException {
         LOG.info("Affichage du prochain évènement ");
 
+        
+      //TODO brs by Djer |POO| Tu peux extraire les 4 lignes suivantes dans une méthode (privée) "buildService(....)" pour clarifer et éviter un commentaire
         // Build a new authorized API client service.
         // °°Structure méthode°° : préparation des services
         final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -77,6 +79,7 @@ public final class CalendarService extends GoogleService {
                     start = event.getStart().getDate();
                 }
                 rdv = rdv + " " + event.getSummary() + "(" + start + "), ";
+              //TODO brs by Djer |POO| Pas de sysOut sur un serveur. Utilise une Log (en debug à priori) si nécéssaire
                 System.out.printf("%s (%s)\n", event.getSummary(), start);
             }
         }
@@ -86,9 +89,7 @@ public final class CalendarService extends GoogleService {
         // ATTENTION : il ne faut qu'un retour de données = bonne pratique
         // (donc pas dans la boucle, ni dans le if)
         // Sinon plusieurs return dans le traitement "métiers" = plusieurs sorties, donc
-        // dans la suite
-        // du code, c'est piégieux.
+        // dans la suite du code, c'est piégieux.
         return rdv;
     }
-
 }

@@ -1,6 +1,3 @@
-/**
- *
- */
 package fr.hoc.dap.server;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
  * @author house
- *
  */
 // RestController : traite les requêtes via http avec du xml ou du json
 // et va renvoyer du xml ou du json
@@ -22,13 +19,16 @@ public class CalendarController {
     /** . */
     private static final Logger LOG = LogManager.getLogger();
 
+    //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     @Autowired
     private Config myConfig;
 
+    //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     @Autowired
     private CalendarService event;
 
     /**
+     * //TODO brs by Djer |JavaDoc| Il manque la description (de la methode), première ligne de la JavaDoc
      * @RequestMapping .
      * @return .
      * @throws Exception .
