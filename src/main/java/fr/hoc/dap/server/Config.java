@@ -5,17 +5,21 @@ package fr.hoc.dap.server;
  */
 public class Config {
 
+    //TODO brs by Djer |JavaDoc| "default xxxxx" serait plus claire pour "justifier" les constantes.
     /** Nom de l'appli. */
     private static final String APPLICATION_NAME = "Hoc Dap";
+
     /** dossier du token. for use authentication permission. */
     /**
      * Dossier dans lequel les autorisations accordées par l'utilisateur seront
      * sauvegardées.
      */
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
+
     /** dossier credential. path to the json file. */
     private static final String CREDENTIALS_FILE_PATH = System.getProperty("user home") + "/dap/credential_web_Json";
 
+    //TODO brs by Djer |JavaDoc| Non cela n'initialise pas (c'est le role du construcuteur", il s'agit du nom de l'application (même que commentaire que la constante sans le "defaut ")
     /** Initialize variable viApplicationName. */
     private String applicationName;
     /** Initialize variable tokendirectorypath. */
@@ -23,8 +27,7 @@ public class Config {
     /** Initialize variable credentialfilepath. */
     private String credentialFolder;
 
-    /** Initialize variable credentialfilepath. */
-
+    /** Initialize les attributs. */
     public Config() {
         applicationName = APPLICATION_NAME;
         credentialFolder = TOKENS_DIRECTORY_PATH;
@@ -70,6 +73,7 @@ public class Config {
     }
 
     public String getoAuth2CallbackUrl() {
+      //TODO brs by Djer |Design Patern| Devrait être ne mode "Zero Conf" comme les autres
         return "/oAuth2Callback";
     }
 

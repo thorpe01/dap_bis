@@ -1,6 +1,3 @@
-/**
- *
- */
 package fr.hoc.dap.server;
 
 import org.springframework.boot.SpringApplication;
@@ -8,12 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 /**
+ * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
  * @author house
- *
  */
 @SpringBootApplication
 public class Application {
+    
     /**
+     * //TODO brs by Djer |JavaDoc| Il manque la description (de la methode), première ligne de la JavaDoc
      * @param args .
      */
     public static void main(final String[] args) {
@@ -21,6 +20,7 @@ public class Application {
     }
 
     /**
+     * //TODO brs by Djer |JavaDoc| Il manque la description (de la methode), première ligne de la JavaDoc
      * @return conf = envoie la conf au container.
      */
     @Bean

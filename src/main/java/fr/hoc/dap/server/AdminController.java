@@ -1,8 +1,7 @@
-/**
- * 
- */
 package fr.hoc.dap.server;
 
+
+//TODO brs by Djer |Audit Code| Configure PMD et CHeckStyle.
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.HashMap;
@@ -18,15 +17,17 @@ import com.google.api.client.auth.oauth2.StoredCredential;
 import com.google.api.client.util.store.DataStore;
 
 /**
+ * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
  * @author house
- *
  */
 @Controller
 public class AdminController {
 
+    //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     @Autowired
     private AdminService gAdminService;
 
+    //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     @RequestMapping("/admin")
     public String table(ModelMap model) throws GeneralSecurityException, IOException {
         model.addAttribute("mavar", "à vous ");
@@ -35,9 +36,7 @@ public class AdminController {
 
         Map<String, StoredCredential> userMap = new HashMap<String, StoredCredential>();
 
-        //TODO recupérer le adminService.getUsers()
         Set<String> allkeys = myUsers.keySet();
-
         for (String key : allkeys) {
             StoredCredential value = myUsers.get(key);
             userMap.put(key, value);
@@ -46,12 +45,8 @@ public class AdminController {
         model.addAttribute("users", userMap);
 
         return "admin";
-
-        //TODO 2-transformer en MAP
-
         /*model.addAttribute("users", userMap);
         
         return "table";*/
     }
-
 }

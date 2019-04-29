@@ -1,8 +1,8 @@
 package fr.hoc.dap.server;
 
 /**
+ * //TODO brs by Djer |JavaDoc| Ce bloc (le "@Author") devrait être dans le bloc de JavaDOc dessous 
  * @author house
- *
  */
 
 import java.io.IOException;
@@ -29,9 +29,9 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.gmail.GmailScopes;
 
 /**
- *
+ * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
  * Classe qui regroupe les autorisations pour accès à Google.
- *
+ * 
  */
 @Service
 public class GoogleService {

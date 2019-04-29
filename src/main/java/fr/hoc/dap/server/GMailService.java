@@ -1,4 +1,3 @@
-
 package fr.hoc.dap.server;
 
 import java.io.IOException;
@@ -15,10 +14,12 @@ import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 
 /** ***************************   DEBUT SINGLETON. */
+//TODO brs by Djer |JavaDoc| Il manque la JavaDoc
 @Service
 public final class GMailService extends GoogleService {
 
     /**
+     * //TODO brs by Djer |JavaDoc| Il manque la description (de la méthode), première ligne de la JavaDoc
      * build a Gmail Service to access Google Data.
      * @return a service instance
      * @throws GeneralSecurityException = ça va venir + tard.
@@ -43,6 +44,7 @@ public final class GMailService extends GoogleService {
     */
     public Integer unreadMail(String userKey, final String userId, final String query)
             throws IOException, GeneralSecurityException {
+        //TODO brs by Djer |Log4J| Une petite Log (en Info) ?
         // °°Structure méthode°° : appel service
         Gmail service = buildService(userKey); // °° construit le service
         // °°Structure méthode°° : récupération des données via la variable response

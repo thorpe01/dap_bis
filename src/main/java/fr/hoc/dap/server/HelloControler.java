@@ -11,8 +11,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
  * @author house
- *
  */
 @Controller
 public class HelloControler {
@@ -29,7 +29,5 @@ public class HelloControler {
         model.addAttribute("bebetes", bestioles);
 
         return "hello";
-
     }
-
 }

@@ -22,11 +22,14 @@ import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.http.GenericUrl;
 
+//TODO brs by Djer |JavaDoc| Il manque la JavaDoc
 @Controller
-
 public class GoogleAccount extends GoogleService {
+  //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     private static final Logger LOG = LogManager.getLogger();
+  //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     private static final int SENSIBLE_DATA_FIRST_CHAR = 0;
+  //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     private static final int SENSIBLE_DATA_LAST_CHAR = 0;
 
     /**
