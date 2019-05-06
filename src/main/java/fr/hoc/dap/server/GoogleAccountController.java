@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,14 +23,23 @@ import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.http.GenericUrl;
 
+import fr.hoc.dap.server.data.DapUser;
+import fr.hoc.dap.server.data.DapUserRepository;
+import fr.hoc.dap.server.service.GoogleService;
+
 //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
+/**
+ * Controller tout pourrie qui étend un Service
+ * @author house
+ *
+ */
 @Controller
-public class GoogleAccount extends GoogleService {
-  //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
+public class GoogleAccountController extends GoogleService {
+    //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     private static final Logger LOG = LogManager.getLogger();
-  //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
+    //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     private static final int SENSIBLE_DATA_FIRST_CHAR = 0;
-  //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
+    //TODO brs by Djer |JavaDoc| Il manque la JavaDoc
     private static final int SENSIBLE_DATA_LAST_CHAR = 0;
 
     /**
@@ -43,14 +53,21 @@ public class GoogleAccount extends GoogleService {
      *                                  to DaP.
      * @throws GeneralSecurityException
      */
+    @Autowired
+    private DapUserRepository dapUserRepo;
+
     @RequestMapping("/oAuth2Callback")
     public String oAuthCallback(@RequestParam final String code, final HttpServletRequest request,
             final HttpSession session) throws ServletException, GeneralSecurityException {
+
         final String decodedCode = extracCode(request);
 
         final String redirectUri = buildRedirectUri(request, getLaConf().getoAuth2CallbackUrl());
 
         final String userId = getUserid(session);
+
+        final String loginName = getloginName(session);
+
         try {
             final GoogleAuthorizationCodeFlow flow = super.getFlow();
             final TokenResponse response = flow.newTokenRequest(decodedCode).setRedirectUri(redirectUri).execute();
@@ -58,6 +75,15 @@ public class GoogleAccount extends GoogleService {
             final Credential credential = flow.createAndStoreCredential(response, userId);
             if (null == credential || null == credential.getAccessToken()) {
                 LOG.warn("Trying to store a NULL AccessToken for user : " + userId);
+            } else {
+
+                //TODO : 1b- récupérer le loginName (jette un oeil a getUserid(); (fait)
+                //TODO : 1b- SAUVEAGRDER en BDD (fait)
+                DapUser monUser = new DapUser();
+                monUser.setLoginName(loginName);
+                monUser.setUserkey(userId);
+                dapUserRepo.save(monUser);
+
             }
 
             if (LOG.isDebugEnabled()) {
@@ -73,6 +99,11 @@ public class GoogleAccount extends GoogleService {
         }
 
         return "redirect:/user-added";
+    }
+
+    private String getloginName(HttpSession session) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     /**
@@ -144,15 +175,20 @@ public class GoogleAccount extends GoogleService {
     * @param session the HTTP session
     * @return the view to Display (on Error)
     */
-    @RequestMapping("/account/add/{userId}")
-    public String addAccount(@PathVariable final String userId, final HttpServletRequest request,
-            final HttpSession session) {
+    //TODO 0a - Demander le loginName
+
+    @RequestMapping("/account/add/{loginName}")
+    public String addAccount(@PathVariable final String loginName, @RequestParam final String userId,
+            final HttpServletRequest request, final HttpSession session) {
+
+        //TODO ????? Vérifier que le userKey nb'est pas déja utilisé ?
+
         String response = "errorOccurs";
         GoogleAuthorizationCodeFlow flow;
         Credential credential = null;
         try {
             flow = super.getFlow();
-            credential = flow.loadCredential(userId);
+            credential = flow.loadCredential(loginName);
 
             if (credential != null && credential.getAccessToken() != null) {
                 response = "AccountAlreadyAdded";
@@ -162,8 +198,11 @@ public class GoogleAccount extends GoogleService {
                 authorizationUrl.setRedirectUri(buildRedirectUri(request, getLaConf().getoAuth2CallbackUrl()));
                 // store userId in session for CallBack Access
                 session.setAttribute("userId", userId);
+                session.setAttribute("loginName", loginName);
+                //TODO 0b - stocker temporairement le loginName
                 response = "redirect:" + authorizationUrl.build();
             }
+
         } catch (IOException | GeneralSecurityException e) {
             LOG.error("Error while loading credential (or Google Flow)", e);
         }

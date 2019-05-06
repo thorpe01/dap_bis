@@ -1,6 +1,5 @@
 package fr.hoc.dap.server;
 
-
 //TODO brs by Djer |Audit Code| Configure PMD et CHeckStyle.
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.api.client.auth.oauth2.StoredCredential;
 import com.google.api.client.util.store.DataStore;
+
+import fr.hoc.dap.server.service.AdminService;
 
 /**
  * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
@@ -36,9 +37,11 @@ public class AdminController {
 
         Map<String, StoredCredential> userMap = new HashMap<String, StoredCredential>();
 
+        //TODO 4a- Récupéer le(s) loginName
         Set<String> allkeys = myUsers.keySet();
         for (String key : allkeys) {
             StoredCredential value = myUsers.get(key);
+
             userMap.put(key, value);
         }
 

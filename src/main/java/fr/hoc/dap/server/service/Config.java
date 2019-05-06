@@ -1,4 +1,4 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.server.service;
 
 /**
  * Configuration des dossiers de stockage. Application ZeroConf

@@ -1,5 +1,5 @@
 
-package fr.hoc.dap.server;
+package fr.hoc.dap.server.service;
 
 /**
  * @author house

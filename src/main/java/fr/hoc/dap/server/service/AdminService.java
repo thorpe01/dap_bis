@@ -1,4 +1,4 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.server.service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;

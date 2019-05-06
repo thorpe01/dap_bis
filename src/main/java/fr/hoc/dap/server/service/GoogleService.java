@@ -1,4 +1,4 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.server.service;
 
 /**
  * //TODO brs by Djer |JavaDoc| Ce bloc (le "@Author") devrait être dans le bloc de JavaDOc dessous 

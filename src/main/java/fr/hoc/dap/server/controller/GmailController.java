@@ -1,4 +1,4 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.server.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import fr.hoc.dap.server.service.GMailService;
 
 /**
  * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
@@ -40,9 +42,16 @@ public class GmailController {
      * @throws Exception .
      */
     @RequestMapping("/email/nbunread")
-    public Integer index(@RequestParam("userkey") String userKey) throws Exception {
+    //TODO 2a- Demander le loginName au lieu du UserKey
+    public Integer index(@RequestParam("loginName") String loginName) throws Exception {
         //TODO brs by Djer |Log4J| Contextualise tes messages "Récupération du nombre d'email pour l'utilisateur " + userKey
         LOG.info("Récupération ud nom d'email");
-        return mesmails.unreadMail(userKey, "me", "is:unread in:inbox");
+        //TODO 2b- ???? Vérifier que le loginName existe ?
+
+        //TODO 2c- Récupére la liste des userKey pour le loginName
+        //TODO 2d- Demander le nb EMail **poru chaque** userKey lié au loginName
+        //TODO 2e- Faire la **somme** des nombre d'emails
+
+        return mesmails.unreadMail(loginName, "me", "is:unread in:inbox");
     }
 }

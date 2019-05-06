@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.hoc.dap.server.service.CalendarService;
+import fr.hoc.dap.server.service.Config;
+
 /**
  * //TODO brs by Djer |JavaDoc| Il manque la description (de la classe), première ligne de la JavaDoc
  * @author house
  */
 // RestController : traite les requêtes via http avec du xml ou du json
 // et va renvoyer du xml ou du json
+//TODO 3x- Mettre à jour avec le "loginName"
 @RestController
 public class CalendarController {
 
